@@ -1,0 +1,3 @@
+rootProject.name='DesignPatternsAndroidKotlin'
+include ':app'
+include ':factory-method'

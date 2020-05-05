@@ -1,0 +1,8 @@
+
+
+
+    1. Factory Method
+
+    Es un patron de diseño creacional, nos permite crear objetos usando clases abstractas o
+    interfaces. ¿Cuando lo usamos?, cuando tenemos una SUPER CLASE con multiples SUB CLASES,
+    según la entrada devolvemos una de las SUB CLASES.
