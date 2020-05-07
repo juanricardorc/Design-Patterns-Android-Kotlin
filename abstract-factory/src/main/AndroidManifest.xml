@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.juanricardorc.abstract_factory">
+
+    <application>
+        <activity android:name=".AbstractFactoryActivity"></activity>
+    </application>
+
+</manifest>
