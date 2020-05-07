@@ -1,23 +1,30 @@
 package com.juanricardorc.designpatterns.creational
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanricardorc.designpatterns.R
+import com.juanricardorc.designpatterns.listener.ItemClickListener
 import com.juanricardorc.designpatterns.model.DesignPatternModel
+import com.juanricardorc.factory_method.FactoryMethodActivity
 import java.util.*
 
-class CreationalFragment : Fragment() {
+class CreationalFragment : Fragment(),
+    ItemClickListener {
 
     private lateinit var creationalViewModel: CreationalViewModel
     private lateinit var creationalRecyclerView: RecyclerView
+    private var models =
+        listOf("Factory Method", "Builder", "Abstract Factory", "Prototype", "Singleton")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +48,8 @@ class CreationalFragment : Fragment() {
             CreationalAdapter(
                 getCreationals(),
                 context = requireContext(),
-                resource = R.layout.item_card_view
+                resource = R.layout.item_card_view,
+                itemClickListener = this
             )
         creationalRecyclerView.layoutManager = LinearLayoutManager(context)
         creationalRecyclerView.adapter = behavioralAdapter
@@ -55,7 +63,7 @@ class CreationalFragment : Fragment() {
             DesignPatternModel(
                 "10001",
                 resources.getDrawable(R.drawable.ic_miscellaneous),
-                "Factory Method"
+                models[0]
             )
         )
 
@@ -63,7 +71,7 @@ class CreationalFragment : Fragment() {
             DesignPatternModel(
                 "10002",
                 resources.getDrawable(R.drawable.ic_healthcare),
-                "Builder"
+                models[1]
             )
         )
 
@@ -71,7 +79,7 @@ class CreationalFragment : Fragment() {
             DesignPatternModel(
                 "10003",
                 resources.getDrawable(R.drawable.ic_shapes),
-                "Abstract Factory"
+                models[2]
             )
         )
 
@@ -79,7 +87,7 @@ class CreationalFragment : Fragment() {
             DesignPatternModel(
                 "10004",
                 resources.getDrawable(R.drawable.ic_edit_tools),
-                "Prototype"
+                models[3]
             )
         )
 
@@ -87,10 +95,29 @@ class CreationalFragment : Fragment() {
             DesignPatternModel(
                 "10005",
                 resources.getDrawable(R.drawable.ic_square),
-                "Singleton"
+                models[4]
             )
         )
 
         return behavioralModel
+    }
+
+    override fun onClick(value: Any) {
+        var designPatternModel: DesignPatternModel = value as DesignPatternModel
+        Toast.makeText(
+            context,
+            designPatternModel.id + " " + designPatternModel.name,
+            Toast.LENGTH_SHORT
+        ).show()
+
+        goActivity(designPatternModel.name)
+    }
+
+    private fun goActivity(name: String) {
+        if (name == models[0]) {
+            var intent = Intent(requireActivity().baseContext, FactoryMethodActivity::class.java)
+            activity?.startActivity(intent)
+        }
+
     }
 }

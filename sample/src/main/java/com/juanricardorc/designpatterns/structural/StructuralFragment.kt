@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanricardorc.designpatterns.R
 import com.juanricardorc.designpatterns.creational.CreationalAdapter
+import com.juanricardorc.designpatterns.listener.ItemClickListener
 import com.juanricardorc.designpatterns.model.DesignPatternModel
 import java.util.*
 
-class StructuralFragment : Fragment() {
+class StructuralFragment : Fragment(),
+    ItemClickListener {
 
     private lateinit var structuralViewModel: StructuralViewModel
     private lateinit var structuralRecyclerView: RecyclerView
@@ -42,7 +45,8 @@ class StructuralFragment : Fragment() {
             CreationalAdapter(
                 getStructurals(),
                 context = requireContext(),
-                resource = R.layout.item_card_view
+                resource = R.layout.item_card_view,
+                itemClickListener = this
             )
         structuralRecyclerView.layoutManager = LinearLayoutManager(context)
         structuralRecyclerView.adapter = behavioralAdapter
@@ -108,5 +112,14 @@ class StructuralFragment : Fragment() {
             )
         )
         return behavioralModel
+    }
+
+    override fun onClick(value: Any) {
+        var designPatternModel: DesignPatternModel = value as DesignPatternModel
+        Toast.makeText(
+            context,
+            designPatternModel.id + " " + designPatternModel.name,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
