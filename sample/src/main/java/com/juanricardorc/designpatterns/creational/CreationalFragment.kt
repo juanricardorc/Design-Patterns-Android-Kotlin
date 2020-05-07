@@ -2,6 +2,7 @@ package com.juanricardorc.designpatterns.creational
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,8 @@ import com.juanricardorc.designpatterns.R
 import com.juanricardorc.designpatterns.listener.ItemClickListener
 import com.juanricardorc.designpatterns.model.DesignPatternModel
 import com.juanricardorc.factory_method.FactoryMethodActivity
+import com.juanricardorc.singleton.PreferencesManager
+import com.juanricardorc.singleton.PreferencesManagerV2
 import java.util.*
 
 class CreationalFragment : Fragment(),
@@ -117,17 +120,29 @@ class CreationalFragment : Fragment(),
     private fun goActivity(name: String) {
         when (name) {
             models[0] -> {
-                var intent = Intent(requireActivity().baseContext, FactoryMethodActivity::class.java)
+                var intent =
+                    Intent(requireActivity().baseContext, FactoryMethodActivity::class.java)
                 activity?.startActivity(intent)
             }
             models[1] -> {
 
             }
             models[2] -> {
-                var intent = Intent(requireActivity().baseContext, AbstractFactoryActivity::class.java)
+                var intent =
+                    Intent(requireActivity().baseContext, AbstractFactoryActivity::class.java)
                 activity?.startActivity(intent)
             }
         }
+
+        PreferencesManager.set(context, "hola", "HOLA")
+        PreferencesManager.set(context, "mundo", "MUNDO")
+        val one = PreferencesManager.getString(context, "hola", "DEFAULT")
+
+        PreferencesManagerV2.getInstance(context)?.set("hola", "HOLA")
+        val two = PreferencesManagerV2.getInstance(context)?.getString("hola", "DEFAULT")
+
+
+        Log.v("PreferencesManager: ", "$one - $two")
 
     }
 }

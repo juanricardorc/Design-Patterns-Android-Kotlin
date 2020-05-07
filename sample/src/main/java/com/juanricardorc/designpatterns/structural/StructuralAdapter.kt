@@ -34,7 +34,7 @@ class StructuralAdapter(
     }
 
     inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var itemCardView: CardView = view.findViewById(R.id.itemCardView) as CardView
+        private var itemCardView: CardView = view.findViewById(R.id.itemCardView) as CardView
         private var iconImageView: ImageView = view.findViewById(R.id.iconImageView) as ImageView
         private var nameTextView: TextView = view.findViewById(R.id.nameTextView) as TextView
 

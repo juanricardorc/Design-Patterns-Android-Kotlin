@@ -37,7 +37,7 @@ class BehavioralFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        var behavioralAdapter: BehavioralAdapter =
+        var behavioralAdapter =
             BehavioralAdapter(
                 getBehaviorals(),
                 context = requireContext(),
