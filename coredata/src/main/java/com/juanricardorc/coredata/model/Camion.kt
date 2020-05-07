@@ -1,4 +1,4 @@
-package com.juanricardorc.abstract_factory
+package com.juanricardorc.coredata.model
 
 data class Camion(
     var _id: String = "",

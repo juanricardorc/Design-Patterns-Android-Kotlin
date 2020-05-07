@@ -1,4 +1,4 @@
-package com.juanricardorc.abstract_factory
+package com.juanricardorc.coredata.model
 
 enum class VehiculoType {
     AUTOMOVIL,CAMION,AUTOBUS,BICLETA,MOTOCICLETA,TRAILER

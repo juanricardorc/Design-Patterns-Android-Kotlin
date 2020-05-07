@@ -1,6 +1,9 @@
 package com.juanricardorc.abstract_factory
 
-class AutomovilFactory : VehiculoAbstractFactory() {
+import com.juanricardorc.coredata.model.Automovil
+import com.juanricardorc.coredata.model.Camion
+
+class AutomovilFactory : VehiculoFactory() {
     override fun getAutomovil(id: String): Automovil {
         return Automovil()
     }

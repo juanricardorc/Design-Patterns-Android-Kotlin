@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.juanricardorc.abstract_factory.AbstractFactoryActivity
 import com.juanricardorc.designpatterns.R
 import com.juanricardorc.designpatterns.listener.ItemClickListener
 import com.juanricardorc.designpatterns.model.DesignPatternModel
@@ -114,9 +115,18 @@ class CreationalFragment : Fragment(),
     }
 
     private fun goActivity(name: String) {
-        if (name == models[0]) {
-            var intent = Intent(requireActivity().baseContext, FactoryMethodActivity::class.java)
-            activity?.startActivity(intent)
+        when (name) {
+            models[0] -> {
+                var intent = Intent(requireActivity().baseContext, FactoryMethodActivity::class.java)
+                activity?.startActivity(intent)
+            }
+            models[1] -> {
+
+            }
+            models[2] -> {
+                var intent = Intent(requireActivity().baseContext, AbstractFactoryActivity::class.java)
+                activity?.startActivity(intent)
+            }
         }
 
     }
